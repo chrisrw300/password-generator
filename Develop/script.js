@@ -39,11 +39,52 @@ function generatePassword() {
 
       generatePassword();
     }
-
+  
+  //confirms which characters the user wants to include in password
   var passwordUpperChar = window.confirm("Would you like uppercase letters in your password? Click OK");
+
   var passwordLowerChar = window.confirm("Would you like lowercase letters in your password? Click OK");
+
   var passwordSpecialChar = window.confirm("Would you like special characters in your password? Click OK");
+
   var passwordNumber = window.confirm("Would you like numbers in your password? Click OK");
+  
+  // Makes sure that at least one option is true
+  while(passwordUpperChar === false && passwordLowerChar === false && passwordSpecialChar === false && passwordNumber === false) {
+
+    //Alerts the user that they must choose at least one option
+    window.alert("You have to choose at least one of the options for a safe password!");
+    
+    //Brings up confirmations again to choose at least one option
+    var passwordUpperChar = window.confirm("Would you like uppercase letters in your password? Click OK");
+
+    var passwordLowerChar = window.confirm("Would you like lowercase letters in your password? Click OK");
+
+    var passwordSpecialChar = window.confirm("Would you like special characters in your password? Click OK");
+
+    var passwordNumber = window.confirm("Would you like numbers in your password? Click OK");
+  }
+
+  //storage for the generated password
+  var finalPassword = [];
+
+  //adds each option to the final password string
+  if (passwordUpperChar) {
+    finalPassword = finalPassword.concat(passwordUpperChar);
+  }
+
+  if (passwordLowerChar) {
+    finalPassword = finalPassword.concat(passwordLowerChar);
+  }
+
+  if (passwordSpecialChar) {
+    finalPassword = finalPassword.concat(passwordSpecialChar);
+  }
+
+  if (passwordNumber) {
+    finalPassword = finalPassword.concat(passwordNumber);
+  }
+
 }
 
 
