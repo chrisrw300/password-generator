@@ -1,8 +1,12 @@
 // Variables for Password Generator
 var passwordSpecialChar;
+
 var passwordNumber;
+
 var passwordUpperChar;
+
 var passwordLowerChar;
+
 
 var passwordLength = "";
 
@@ -26,20 +30,24 @@ var number = [
 
 //Starting function, will start with greeting and asking specifications for password
 function generatePassword() {
+
   window.alert("Let's make you a secure password!");
 
   var passwordLength = window.prompt("How long would you like your password? Choose between 8 - 128.");
 
-    if(passwordLength >= 8 || passwordLength <= 128) {
-      window.alert("Your password will be " + passwordLength + " characters long!");
+    //makes sure the input is between 8 and 128, not below or above
+    while(passwordLength <= 7 || passwordLength >= 128) {
+
+      window.alert("Your password must be 8 - 128 characters long!");
+
+      var passwordLength = window.prompt("How long would you like your password? Choose between 8 - 128.");
+
     } 
 
-    else {
-      window.alert("Please choose a number within the specified range!");
-
-      generatePassword();
-    }
+  window.alert("Your password will be " + passwordLength + " characters long!");
   
+  console.log(passwordLength);
+
   //confirms which characters the user wants to include in password
   var passwordUpperChar = window.confirm("Would you like uppercase letters in your password? Click OK");
 
@@ -66,25 +74,66 @@ function generatePassword() {
   }
 
   //storage for the generated password
-  var finalPassword = [];
+  var finalPassword = []
 
   //adds each option to the final password string
   if (passwordUpperChar) {
+
     finalPassword = finalPassword.concat(passwordUpperChar);
-  }
+
+    console.log("uppercase characters added to password!");
+
+  } else {
+
+    console.log("uppercase characters not added to password!");
+    }
 
   if (passwordLowerChar) {
+
     finalPassword = finalPassword.concat(passwordLowerChar);
-  }
+
+    console.log("lowercase characters added to password!");
+
+  } else {
+
+    console.log("lowercase characters not added to password!");
+    }
 
   if (passwordSpecialChar) {
+
     finalPassword = finalPassword.concat(passwordSpecialChar);
-  }
+
+    console.log("special characters added to password!");
+
+  } else {
+
+    console.log("special characters not added to password!");
+
+    }
 
   if (passwordNumber) {
-    finalPassword = finalPassword.concat(passwordNumber);
-  }
 
+    finalPassword = finalPassword.concat(passwordNumber);
+
+    console.log("numbers added to password!");
+
+  } else {
+
+    console.log("numbers not added to password!");
+
+    }
+
+    console.log(finalPassword);
+
+    //puts all specifications into a string
+    var randomPasswordString = "";
+
+    for (var i = 0; i < passwordLength; i++) {
+      randomPasswordString = randomPasswordString + finalPassword[Math.floor(Math.random() * randomPasswordString.length)];
+    }
+
+    return randomPasswordString;
+  
 }
 
 
