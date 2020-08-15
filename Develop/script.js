@@ -1,13 +1,8 @@
 // Variables for Password Generator
 var passwordSpecialChar;
-
 var passwordNumber;
-
 var passwordUpperChar;
-
 var passwordLowerChar;
-
-
 var passwordLength = "";
 
 
@@ -36,7 +31,7 @@ function generatePassword() {
   var passwordLength = window.prompt("How long would you like your password? Choose between 8 - 128.");
 
     //makes sure the input is between 8 and 128, not below or above
-    while(passwordLength <= 7 || passwordLength >= 128) {
+    while (passwordLength <= 7 || passwordLength >= 129) {
 
       window.alert("Your password must be 8 - 128 characters long!");
 
@@ -58,7 +53,7 @@ function generatePassword() {
   var passwordNumber = window.confirm("Would you like numbers in your password? Click OK");
   
   // Makes sure that at least one option is true
-  while(passwordUpperChar === false && passwordLowerChar === false && passwordSpecialChar === false && passwordNumber === false) {
+  while (passwordUpperChar === false && passwordLowerChar === false && passwordSpecialChar === false && passwordNumber === false) {
 
     //Alerts the user that they must choose at least one option
     window.alert("You have to choose at least one of the options for a safe password!");
@@ -74,14 +69,16 @@ function generatePassword() {
   }
 
   //storage for the generated password
-  var finalPassword = []
+  var finalPassword = [];
 
   //adds each option to the final password string
   if (passwordUpperChar) {
 
-    finalPassword = finalPassword.concat(passwordUpperChar);
+    finalPassword = finalPassword.concat(upperChar);
 
     console.log("uppercase characters added to password!");
+
+    console.log(passwordUpperChar);
 
   } else {
 
@@ -90,7 +87,7 @@ function generatePassword() {
 
   if (passwordLowerChar) {
 
-    finalPassword = finalPassword.concat(passwordLowerChar);
+    finalPassword = finalPassword.concat(lowerChar);
 
     console.log("lowercase characters added to password!");
 
@@ -101,7 +98,7 @@ function generatePassword() {
 
   if (passwordSpecialChar) {
 
-    finalPassword = finalPassword.concat(passwordSpecialChar);
+    finalPassword = finalPassword.concat(specialChar);
 
     console.log("special characters added to password!");
 
@@ -113,7 +110,7 @@ function generatePassword() {
 
   if (passwordNumber) {
 
-    finalPassword = finalPassword.concat(passwordNumber);
+    finalPassword = finalPassword.concat(number);
 
     console.log("numbers added to password!");
 
@@ -129,7 +126,7 @@ function generatePassword() {
     var randomPasswordString = "";
 
     for (var i = 0; i < passwordLength; i++) {
-      randomPasswordString = randomPasswordString + finalPassword[Math.floor(Math.random() * randomPasswordString.length)];
+      randomPasswordString = randomPasswordString + finalPassword[Math.floor(Math.random() * finalPassword.length)];
     }
 
     return randomPasswordString;
